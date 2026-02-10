@@ -1,0 +1,19 @@
+def sjf_schedule(processes):
+    """
+    Simulates Shortest Job First (SJF) scheduling using CPU percentage
+    """
+    sorted_processes = sorted(processes, key=lambda x: x['cpu'])
+    return sorted_processes
+
+
+def ai_schedule(processes, model=None):
+    """
+    Placeholder for ML-based scheduling (using predicted burst time)
+    """
+    if model:
+        for p in processes:
+            p['predicted_burst'] = model.predict([[p['cpu'], p['memory']]])[0]
+        return sorted(processes, key=lambda x: x['predicted_burst'])
+    else:
+        return sjf_schedule(processes)
+
